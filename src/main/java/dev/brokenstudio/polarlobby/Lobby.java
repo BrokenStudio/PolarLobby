@@ -1,4 +1,21 @@
 package dev.brokenstudio.polarlobby;
 
-public class Lobby {
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class Lobby extends JavaPlugin {
+
+    @Override
+    public void onEnable() {
+        register();
+    }
+
+    @Override
+    public void onDisable() {
+
+    }
+
+    private void register(){
+
+    }
+
 }
