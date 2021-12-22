@@ -106,7 +106,7 @@ public class PolarItem extends ItemStack {
             setItemMeta(potionMeta);
             return this;
         } else {
-            throw new IllegalArgumentException("Color() only applicable for leather armor and potions!");
+            throw new IllegalArgumentException("Color only applicable for leather armor and potions!");
         }
     }
 
