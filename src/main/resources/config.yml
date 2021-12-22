@@ -1,0 +1,12 @@
+########################################################################
+#                                                                      #
+#                              PolarLobby                              #
+#                                                                      #
+########################################################################
+
+# MariaDB (The used port is the standard port)
+MariaDB:
+  host: 'localhost'
+  database: 'lobby'
+  username: 'username'
+  password: 'password'

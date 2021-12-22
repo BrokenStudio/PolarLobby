@@ -12,8 +12,9 @@ public class Lobby extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
         instance = this;
-        databaseHandler = new DatabaseHandler();
+        databaseHandler = new DatabaseHandler(getConfig());
         locations = Locations.fromJson("");
         register();
     }

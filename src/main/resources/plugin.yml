@@ -1,0 +1,7 @@
+name: PolarLobby
+main: dev.brokenstudio.polarlobby.Lobby
+version: 1.0.0
+author: BrokenStudio
+website: https://brokenstudio.de/polarlobby
+
+commands:
