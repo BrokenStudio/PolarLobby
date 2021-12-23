@@ -38,6 +38,9 @@ public class Locations {
     }
 
     public static Locations fromJson(String json){
+        if(json.equals("empty")){
+            return new Locations();
+        }
         HashMap<String, JsonLocation> jsonLocs = Serializer.gson.fromJson(json, mapType);
         HashMap<String, Location> locs = new HashMap<>();
         jsonLocs.keySet().forEach(cr -> locs.put(cr, jsonLocs.get(cr).toLocation()));
