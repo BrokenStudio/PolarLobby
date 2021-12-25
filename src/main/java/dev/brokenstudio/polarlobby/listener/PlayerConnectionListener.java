@@ -20,10 +20,14 @@ public class PlayerConnectionListener implements Listener {
 
         CloudPlayer cloudPlayer = CloudPlugin.getInstance().getCloudPlayerHandler().getCloudPlayer(player.getUniqueId());
 
-        if(Boolean.valueOf(cloudPlayer.getProperty("lobby_spawn_last_location", Boolean.TYPE))){
-            JsonLocation jsonLocation = cloudPlayer.getProperty("lobby_last_location",JsonLocation.class);
-            if(jsonLocation != null){
-                player.teleport(jsonLocation.toLocation());
+        if(cloudPlayer.getProperty("lobby_spawn_last_location", Boolean.TYPE) != null){
+            if(cloudPlayer.getProperty("lobby_spawn_last_location", Boolean.TYPE)){
+                JsonLocation jsonLocation = cloudPlayer.getProperty("lobby_last_location",JsonLocation.class);
+                if(jsonLocation != null){
+                    player.teleport(jsonLocation.toLocation());
+                }else{
+                    player.teleport(Lobby.getInstance().getLocations().getLocation("spawn"));
+                }
             }else{
                 player.teleport(Lobby.getInstance().getLocations().getLocation("spawn"));
             }
@@ -33,6 +37,7 @@ public class PlayerConnectionListener implements Listener {
 
     }
 
+    @EventHandler
     public void onQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
 

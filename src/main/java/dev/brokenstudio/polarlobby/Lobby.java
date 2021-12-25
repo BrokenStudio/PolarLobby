@@ -1,5 +1,6 @@
 package dev.brokenstudio.polarlobby;
 
+import dev.brokenstudio.polarlobby.commands.SetCommand;
 import dev.brokenstudio.polarlobby.database.DatabaseHandler;
 import dev.brokenstudio.polarlobby.database.sql.MariaDBConnection;
 import dev.brokenstudio.polarlobby.listener.PlayerConnectionListener;
@@ -37,7 +38,7 @@ public class Lobby extends JavaPlugin {
         }
         CompletableFuture.runAsync(() ->{
            MariaDBConnection asyncConnection = databaseHandler.getMariaDBHandler().getConnection();
-           connection.update("INSERT INTO `lobby_data` (`key`,`value`) VALUES ('locations','empty');")
+           asyncConnection.update("INSERT INTO `lobby_data` (`key`,`value`) VALUES ('locations','empty');")
                    .close();
         });
         connection.close();
@@ -53,6 +54,8 @@ public class Lobby extends JavaPlugin {
 
     private void register(){
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
+
+        getCommand("set").setExecutor(new SetCommand());
     }
 
     public static Lobby getInstance() {

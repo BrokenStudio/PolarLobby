@@ -1,7 +1,12 @@
 name: PolarLobby
 main: dev.brokenstudio.polarlobby.Lobby
 version: 1.0.0
+api-version: 1.16
 author: BrokenStudio
 website: https://brokenstudio.de/polarlobby
+depend:
+  - PolarCloud-Spigot
 
 commands:
+  set:
+    permission: polarlobby.set
