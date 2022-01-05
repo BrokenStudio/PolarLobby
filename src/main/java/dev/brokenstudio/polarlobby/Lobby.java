@@ -3,7 +3,9 @@ package dev.brokenstudio.polarlobby;
 import dev.brokenstudio.polarlobby.commands.SetCommand;
 import dev.brokenstudio.polarlobby.database.DatabaseHandler;
 import dev.brokenstudio.polarlobby.database.sql.MariaDBConnection;
+import dev.brokenstudio.polarlobby.inventorues.InventoryHandler;
 import dev.brokenstudio.polarlobby.listener.PlayerConnectionListener;
+import dev.brokenstudio.polarlobby.listener.PlayerInteractListener;
 import dev.brokenstudio.polarlobby.player.PlayerUtils;
 import dev.brokenstudio.polarlobby.utils.Locations;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,11 +16,12 @@ import java.util.concurrent.CompletableFuture;
 
 public class Lobby extends JavaPlugin {
 
-    public static String PREFIX = "§8•● §bPolar§fCloud §8●• §7";
+    public static String PREFIX = "§8•● §5Byte§dFox §8●• §7";
     private static Lobby instance;
     private DatabaseHandler databaseHandler;
     private Locations locations;
     private PlayerUtils playerUtils;
+    private InventoryHandler inventoryHandler;
 
     @Override
     public void onEnable() {
@@ -43,6 +46,7 @@ public class Lobby extends JavaPlugin {
         });
         connection.close();
         playerUtils = new PlayerUtils();
+        inventoryHandler = new InventoryHandler();
         register();
     }
 
@@ -54,6 +58,7 @@ public class Lobby extends JavaPlugin {
 
     private void register(){
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
 
         getCommand("set").setExecutor(new SetCommand());
     }
@@ -76,5 +81,9 @@ public class Lobby extends JavaPlugin {
 
     public static String getPrefix() {
         return PREFIX;
+    }
+
+    public InventoryHandler getInventoryHandler() {
+        return inventoryHandler;
     }
 }
