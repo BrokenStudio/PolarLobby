@@ -3,7 +3,7 @@ package dev.brokenstudio.polarlobby;
 import dev.brokenstudio.polarlobby.commands.SetCommand;
 import dev.brokenstudio.polarlobby.database.DatabaseHandler;
 import dev.brokenstudio.polarlobby.database.sql.MariaDBConnection;
-import dev.brokenstudio.polarlobby.inventorues.InventoryHandler;
+import dev.brokenstudio.polarlobby.inventories.InventoryHandler;
 import dev.brokenstudio.polarlobby.listener.PlayerConnectionListener;
 import dev.brokenstudio.polarlobby.listener.PlayerInteractListener;
 import dev.brokenstudio.polarlobby.player.PlayerUtils;

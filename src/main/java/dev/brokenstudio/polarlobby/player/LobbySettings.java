@@ -1,11 +1,12 @@
 package dev.brokenstudio.polarlobby.player;
 
-import dev.brokenstudio.polarlobby.inventorues.LobbyColor;
+import dev.brokenstudio.polarlobby.inventories.LobbyColor;
 import dev.brokenstudio.polarlobby.player.handler.LobbySettingsHandler;
 
 public class LobbySettings {
 
     private LobbyColor lobbyColor;
+    private boolean teleportAnimation;
 
     public LobbyColor getColor() {
         return lobbyColor;
@@ -19,4 +20,11 @@ public class LobbySettings {
         return LobbySettingsHandler.getInstance();
     }
 
+    public boolean isTeleportAnimation() {
+        return teleportAnimation;
+    }
+
+    public void setTeleportAnimation(boolean teleportAnimation) {
+        this.teleportAnimation = teleportAnimation;
+    }
 }

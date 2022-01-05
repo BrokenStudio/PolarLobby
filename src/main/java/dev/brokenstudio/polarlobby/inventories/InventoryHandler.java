@@ -1,4 +1,4 @@
-package dev.brokenstudio.polarlobby.inventorues;
+package dev.brokenstudio.polarlobby.inventories;
 
 import dev.brokenstudio.polarinvs.PolarInventory;
 
