@@ -1,6 +1,7 @@
 package dev.brokenstudio.polarlobby.listener;
 
 import dev.brokenstudio.polarlobby.Lobby;
+import dev.brokenstudio.polarlobby.database.building.BuildHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,8 +12,17 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PlayerInteractListener implements Listener {
 
+    private BuildHandler buildHandler;
+
+    {
+        buildHandler = BuildHandler.getInstance();
+    }
+
     @EventHandler
     public void onInteract(PlayerInteractEvent event){
+        if(this.buildHandler.isBuilding(event.getPlayer()))
+            return;
+
         if(event.getAction() == Action.PHYSICAL){
             event.setCancelled(true);
             return;

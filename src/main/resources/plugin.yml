@@ -10,3 +10,5 @@ depend:
 commands:
   set:
     permission: polarlobby.set
+  build:
+    permission: polarlobby.build

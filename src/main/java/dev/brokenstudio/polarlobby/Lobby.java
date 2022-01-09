@@ -1,6 +1,7 @@
 package dev.brokenstudio.polarlobby;
 
 import dev.brokenstudio.polarinvs.InventoryManager;
+import dev.brokenstudio.polarlobby.commands.BuildCommand;
 import dev.brokenstudio.polarlobby.commands.SetCommand;
 import dev.brokenstudio.polarlobby.database.DatabaseHandler;
 import dev.brokenstudio.polarlobby.database.sql.MariaDBConnection;
@@ -66,6 +67,7 @@ public class Lobby extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new UtilListener(), this);
 
         getCommand("set").setExecutor(new SetCommand());
+        getCommand("build").setExecutor(new BuildCommand());
     }
 
     public static Lobby getInstance() {
