@@ -6,6 +6,7 @@ import dev.brokenstudio.polarlobby.Lobby;
 import dev.brokenstudio.polarlobby.inventories.LobbyColor;
 import dev.brokenstudio.polarlobby.player.LobbySettings;
 import dev.brokenstudio.polarlobby.utils.JsonLocation;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,6 +31,7 @@ public class PlayerConnectionListener implements Listener {
         Player player = event.getPlayer();
 
         Lobby.getInstance().getPlayerUtils().join(player);
+        player.getInventory().setHeldItemSlot(1);
 
         CloudPlayer cloudPlayer = cpPlayerSave.get(player.getUniqueId());
         if(cloudPlayer.getProperty("lobby_spawn_last_location", Boolean.TYPE) != null){
@@ -51,9 +53,13 @@ public class PlayerConnectionListener implements Listener {
         if(settings == null){
             settings = new LobbySettings();
             settings.setColor(LobbyColor.DARK_GRAY);
+            settings.setHiderState(LobbySettings.HiderState.ALL);
+            settings.setTeleportAnimation(true);
         }
         LobbySettings.handler().setSettings(player, settings);
         cpPlayerSave.remove(event.getPlayer().getUniqueId());
+        settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
+        Bukkit.getOnlinePlayers().forEach(cr -> LobbySettings.handler().getSettings(cr).getHiderState().handlePLayer(player,cr));
     }
 
     @EventHandler

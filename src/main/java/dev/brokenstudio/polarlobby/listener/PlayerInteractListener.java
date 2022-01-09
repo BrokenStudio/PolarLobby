@@ -30,7 +30,7 @@ public class PlayerInteractListener implements Listener {
 
             }
         }else if(type == Material.TOTEM_OF_UNDYING){
-
+            Lobby.getInstance().getInventoryHandler().getHider().open(player);
         }else if(type == Material.FURNACE_MINECART){
 
         }

@@ -1,9 +1,11 @@
 package dev.brokenstudio.polarlobby;
 
+import dev.brokenstudio.polarinvs.InventoryManager;
 import dev.brokenstudio.polarlobby.commands.SetCommand;
 import dev.brokenstudio.polarlobby.database.DatabaseHandler;
 import dev.brokenstudio.polarlobby.database.sql.MariaDBConnection;
 import dev.brokenstudio.polarlobby.inventories.InventoryHandler;
+import dev.brokenstudio.polarlobby.inventories.opener.SpecialInventoryOpener;
 import dev.brokenstudio.polarlobby.listener.PlayerConnectionListener;
 import dev.brokenstudio.polarlobby.listener.PlayerInteractListener;
 import dev.brokenstudio.polarlobby.player.PlayerUtils;
@@ -46,6 +48,7 @@ public class Lobby extends JavaPlugin {
         });
         connection.close();
         playerUtils = new PlayerUtils();
+        InventoryManager.getDefaultManager().registerOpener(new SpecialInventoryOpener());
         inventoryHandler = new InventoryHandler();
         register();
     }

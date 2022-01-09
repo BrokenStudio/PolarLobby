@@ -71,6 +71,13 @@ public class PolarItem extends ItemStack {
         return this;
     }
 
+    public PolarItem glow(boolean glow){
+        if(glow){
+            glow();
+        }
+        return this;
+    }
+
     public PolarItem addItemFlags(ItemFlag... flags){
         ItemMeta meta = getItemMeta();
         meta.addItemFlags(flags);

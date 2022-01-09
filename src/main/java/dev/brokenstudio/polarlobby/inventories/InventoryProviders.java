@@ -6,6 +6,7 @@ import dev.brokenstudio.polarinvs.content.InventoryProvider;
 import dev.brokenstudio.polarlobby.Lobby;
 import dev.brokenstudio.polarlobby.player.LobbySettings;
 import dev.brokenstudio.polarlobby.utils.PolarItem;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -24,7 +25,7 @@ public class InventoryProviders {
             contents.set(3, 4, new ClickableItem(new PolarItem(Material.GRASS_BLOCK).name("§8•● §2Free§aBuild §8●•").lore("§8§oOldschool").hideAttributes(),(event) -> {
                 teleport(player, Lobby.getInstance().getLocations().getLocation("freebuild"));
             }));
-            contents.set(3, 6, new ClickableItem(new PolarItem(Material.DIAMOND_BOOTS).name("§8•● §6Switch§eFFA §8●•").lore("§8§oSolo & PvP").hideAttributes(),(event) -> {
+            contents.set(3, 6, new ClickableItem(new PolarItem(Material.STICK).name("§8•● §6Switch§eFFA §8●•").lore("§8§oSolo & PvP").hideAttributes(),(event) -> {
                 teleport(player, Lobby.getInstance().getLocations().getLocation("switchffa"));
             }));
             contents.set(3, 8, new ClickableItem(new PolarItem(Material.DIAMOND_BOOTS).name("§8•● §3Jump§bCity §8●•").lore("§8§oSolo & Parkour").hideAttributes(),(event) -> {
@@ -54,6 +55,52 @@ public class InventoryProviders {
 
     }
 
+    public static class HiderProvider implements InventoryProvider {
+
+        @Override
+        public void init(Player player, InventoryContents contents) {
+            LobbySettings settings = LobbySettings.handler().getSettings(player);
+            contents.fillRow(1, settings.getColor().glass());
+            contents.fillRow(3, settings.getColor().glass());
+
+            contents.set(2,2, new ClickableItem(new PolarItem(Material.LIME_DYE).name("§8•● §aAlle Spieler §8●•")
+                    .glow(settings.getHiderState() == LobbySettings.HiderState.ALL),(event)->{
+                settings.setHiderState(LobbySettings.HiderState.ALL);
+                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                player.closeInventory();
+            }));
+
+            contents.set(2,3, new ClickableItem(new PolarItem(Material.PURPLE_DYE).name("§8•● §5VIP Spieler §8●•")
+                    .glow(settings.getHiderState() == LobbySettings.HiderState.VIP),(event)->{
+                settings.setHiderState(LobbySettings.HiderState.VIP);
+                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                player.closeInventory();
+            }));
+
+            contents.set(2,5, new ClickableItem(new PolarItem(Material.ORANGE_DYE).name("§8•● §6Freunde §8●•")
+                    .glow(settings.getHiderState() == LobbySettings.HiderState.FRIENDS),(event)->{
+                settings.setHiderState(LobbySettings.HiderState.FRIENDS);
+                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                player.closeInventory();
+            }));
+
+            contents.set(2,7, new ClickableItem(new PolarItem(Material.RED_DYE).name("§8•● §cTeam §8●•")
+                    .glow(settings.getHiderState() == LobbySettings.HiderState.TEAM),(event)->{
+                settings.setHiderState(LobbySettings.HiderState.TEAM);
+                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                player.closeInventory();
+            }));
+
+            contents.set(2,8, new ClickableItem(new PolarItem(Material.LIGHT_GRAY_DYE).name("§8•● §7Keine Spieler §8●•")
+                    .glow(settings.getHiderState() == LobbySettings.HiderState.NOONE),(event)->{
+                settings.setHiderState(LobbySettings.HiderState.NOONE);
+                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                player.closeInventory();
+            }));
+
+
+        }
+    }
 
 
 }
