@@ -18,11 +18,11 @@ public class BuildCommand implements CommandExecutor {
         Player player = (Player) commandSender;
 
         if(BuildHandler.getInstance().isBuilding(player)){
-            BuildHandler.getInstance().setBuilding(player, true);
-            player.sendMessage(Lobby.getPrefix() + "Du kannst nun bauen.");
-        }else{
             BuildHandler.getInstance().setBuilding(player, false);
             player.sendMessage(Lobby.getPrefix() + "Du kannst nun nicht mehr bauen.");
+        }else{
+            BuildHandler.getInstance().setBuilding(player, true);
+            player.sendMessage(Lobby.getPrefix() + "Du kannst nun bauen.");
         }
 
         return true;
