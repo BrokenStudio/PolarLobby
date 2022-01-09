@@ -8,6 +8,7 @@ import dev.brokenstudio.polarlobby.inventories.InventoryHandler;
 import dev.brokenstudio.polarlobby.inventories.opener.SpecialInventoryOpener;
 import dev.brokenstudio.polarlobby.listener.PlayerConnectionListener;
 import dev.brokenstudio.polarlobby.listener.PlayerInteractListener;
+import dev.brokenstudio.polarlobby.listener.UtilListener;
 import dev.brokenstudio.polarlobby.player.PlayerUtils;
 import dev.brokenstudio.polarlobby.utils.Locations;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -62,6 +63,7 @@ public class Lobby extends JavaPlugin {
     private void register(){
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
+        getServer().getPluginManager().registerEvents(new UtilListener(), this);
 
         getCommand("set").setExecutor(new SetCommand());
     }
