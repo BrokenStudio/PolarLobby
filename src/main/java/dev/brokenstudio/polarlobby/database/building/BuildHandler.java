@@ -29,6 +29,11 @@ public class BuildHandler {
         }
     }
 
+    public void unloadPlayer(Player player){
+        building.remove(player);
+        inventories.remove(player);
+    }
+
     public boolean isBuilding(Player player){
         return building.contains(player);
     }

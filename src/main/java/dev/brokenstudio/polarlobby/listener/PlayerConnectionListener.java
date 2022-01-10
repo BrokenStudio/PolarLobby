@@ -3,6 +3,7 @@ package dev.brokenstudio.polarlobby.listener;
 import dev.brokenstudio.cloud.cloudplayer.CloudPlayer;
 import dev.brokenstudio.cloud.cloudplugin.CloudPlugin;
 import dev.brokenstudio.polarlobby.Lobby;
+import dev.brokenstudio.polarlobby.database.building.BuildHandler;
 import dev.brokenstudio.polarlobby.inventories.LobbyColor;
 import dev.brokenstudio.polarlobby.player.LobbySettings;
 import dev.brokenstudio.polarlobby.utils.JsonLocation;
@@ -68,6 +69,7 @@ public class PlayerConnectionListener implements Listener {
         event.setQuitMessage(null);
         Player player = event.getPlayer();
 
+        BuildHandler.getInstance().unloadPlayer(player);
         CloudPlayer cloudPlayer = CloudPlugin.getInstance().getCloudPlayerHandler().getCloudPlayer(player.getUniqueId());
         cloudPlayer.setProperty("lobby_last_location", new JsonLocation(player.getLocation()));
         cloudPlayer.setProperty("lobby_settings", LobbySettings.handler().getSettings(player));
