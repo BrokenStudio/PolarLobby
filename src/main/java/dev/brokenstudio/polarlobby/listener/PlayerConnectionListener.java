@@ -28,6 +28,7 @@ public class PlayerConnectionListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
+        event.setJoinMessage(null);
         Player player = event.getPlayer();
 
         Lobby.getInstance().getPlayerUtils().join(player);
@@ -64,6 +65,7 @@ public class PlayerConnectionListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event){
+        event.setQuitMessage(null);
         Player player = event.getPlayer();
 
         CloudPlayer cloudPlayer = CloudPlugin.getInstance().getCloudPlayerHandler().getCloudPlayer(player.getUniqueId());

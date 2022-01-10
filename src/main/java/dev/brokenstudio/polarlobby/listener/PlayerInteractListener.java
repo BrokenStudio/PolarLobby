@@ -2,7 +2,6 @@ package dev.brokenstudio.polarlobby.listener;
 
 import dev.brokenstudio.polarlobby.Lobby;
 import dev.brokenstudio.polarlobby.database.building.BuildHandler;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
