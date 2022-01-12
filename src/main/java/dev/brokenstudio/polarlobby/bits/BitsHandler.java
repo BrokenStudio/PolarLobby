@@ -1,7 +1,6 @@
 package dev.brokenstudio.polarlobby.bits;
 
 import dev.brokenstudio.cloud.cloudplayer.CloudPlayer;
-import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -13,7 +12,11 @@ public class BitsHandler {
     private static BitsHandler instance;
 
     public void loadPlayer(CloudPlayer cloudPlayer){
-        BitsHandler.bits.put(cloudPlayer.getUUID(), cloudPlayer.getProperty("bits", Integer.TYPE));
+        if(cloudPlayer.getProperty("bits", Integer.TYPE) != null){
+            BitsHandler.bits.put(cloudPlayer.getUUID(), cloudPlayer.getProperty("bits", Integer.TYPE));
+        }else{
+            setBits(cloudPlayer.getUUID(), 0);
+        }
     }
 
     public void savePlayer(CloudPlayer cloudPlayer){
