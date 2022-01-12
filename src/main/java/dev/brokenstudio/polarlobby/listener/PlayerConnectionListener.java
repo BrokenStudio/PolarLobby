@@ -3,6 +3,7 @@ package dev.brokenstudio.polarlobby.listener;
 import dev.brokenstudio.cloud.cloudplayer.CloudPlayer;
 import dev.brokenstudio.cloud.cloudplugin.CloudPlugin;
 import dev.brokenstudio.polarlobby.Lobby;
+import dev.brokenstudio.polarlobby.badges.BadgesHandler;
 import dev.brokenstudio.polarlobby.bits.BitsHandler;
 import dev.brokenstudio.polarlobby.database.building.BuildHandler;
 import dev.brokenstudio.polarlobby.inventories.LobbyColor;
@@ -61,6 +62,7 @@ public class PlayerConnectionListener implements Listener {
         }
         LobbySettings.handler().setSettings(player, settings);
         BitsHandler.getInstance().loadPlayer(cloudPlayer);
+        BadgesHandler.getInstance().loadPlayer(cloudPlayer);
         cpPlayerSave.remove(event.getPlayer().getUniqueId());
         settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
         Bukkit.getOnlinePlayers().forEach(cr -> LobbySettings.handler().getSettings(cr).getHiderState().handlePLayer(player,cr));
@@ -76,8 +78,9 @@ public class PlayerConnectionListener implements Listener {
         cloudPlayer.setProperty("lobby_last_location", new JsonLocation(player.getLocation()));
         cloudPlayer.setProperty("lobby_settings", LobbySettings.handler().getSettings(player));
         BitsHandler.getInstance().savePlayer(cloudPlayer);
+        BadgesHandler.getInstance().unloadPlayer(player,cloudPlayer);
         CloudPlugin.getInstance().getCloudPlayerHandler().setCloudPlayer(cloudPlayer);
-
+        BadgesHandler.getInstance().removePlayer(player);
     }
 
 }

@@ -1,6 +1,7 @@
 package dev.brokenstudio.polarlobby;
 
 import dev.brokenstudio.polarinvs.InventoryManager;
+import dev.brokenstudio.polarlobby.badges.BadgesHandler;
 import dev.brokenstudio.polarlobby.commands.BuildCommand;
 import dev.brokenstudio.polarlobby.commands.SetCommand;
 import dev.brokenstudio.polarlobby.database.DatabaseHandler;
@@ -52,6 +53,7 @@ public class Lobby extends JavaPlugin {
         playerUtils = new PlayerUtils();
         InventoryManager.getDefaultManager().registerOpener(new SpecialInventoryOpener());
         inventoryHandler = new InventoryHandler();
+        BadgesHandler.loadBadges();
         register();
     }
 
