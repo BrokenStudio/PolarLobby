@@ -85,8 +85,8 @@ public class ScoreboardHandler {
 
         Team bitsClanOne = scoreboard.registerNewTeam("bitsClanOne");
         Team bitsClanTwo = scoreboard.registerNewTeam("bitsClanTwo");
-        Team playtimeFriendOne = scoreboard.registerNewTeam("playTimeFriendsOne");
-        Team playtimeFriendTwo = scoreboard.registerNewTeam("playTimeFriendsTwo");
+        Team playtimeFriendOne = scoreboard.registerNewTeam("pTFO");
+        Team playtimeFriendTwo = scoreboard.registerNewTeam("pTFT");
 
         bitsClanOne.addEntry(ChatColor.YELLOW + "" + ChatColor.WHITE);
         bitsClanTwo.addEntry(ChatColor.WHITE + "" + ChatColor.WHITE);
@@ -96,12 +96,12 @@ public class ScoreboardHandler {
         if(firstPage){
             bitsClanOne.setPrefix(" §5➓ §8▎ §7Bits");
             bitsClanTwo.setPrefix("     §8» §7" + BitsHandler.getInstance().getBits(player.getUniqueId()));
-            playtimeFriendOne.setPrefix(" §6✈ §8▎ ");
+            playtimeFriendOne.setPrefix(" §6✈ §8▎ §7Spielzeit");
             playtimeFriendTwo.setPrefix("     §8» §70h");
         }else{
             bitsClanOne.setPrefix(" §5☕ §8▎ §7Clan");
             bitsClanTwo.setPrefix("     §8» §c✘");
-            playtimeFriendOne.setPrefix(" §6❤ §8▎ ");
+            playtimeFriendOne.setPrefix(" §6❤ §8▎ §Freunde");
             playtimeFriendTwo.setPrefix("     §8» §d§l0/0");
         }
 
@@ -113,6 +113,7 @@ public class ScoreboardHandler {
         Team link = scoreboard.registerNewTeam("link");
         link.setPrefix(currentState.bottomOne);
         link.setSuffix(currentState.bottomTwo);
+        link.addEntry(ChatColor.GRAY + "" + ChatColor.WHITE);
 
         Team emptyLine = scoreboard.registerNewTeam("emptyline");
         emptyLine.setPrefix(ChatColor.YELLOW +  " ");
