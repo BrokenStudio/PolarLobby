@@ -63,6 +63,7 @@ public class PlayerConnectionListener implements Listener {
         LobbySettings.handler().setSettings(player, settings);
         BitsHandler.getInstance().loadPlayer(cloudPlayer);
         BadgesHandler.getInstance().loadPlayer(cloudPlayer);
+        Lobby.getInstance().getScoreboardHandler().setSidebar(player, cloudPlayer);
         cpPlayerSave.remove(event.getPlayer().getUniqueId());
         settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
         Bukkit.getOnlinePlayers().forEach(cr -> LobbySettings.handler().getSettings(cr).getHiderState().handlePLayer(player,cr));

@@ -12,6 +12,7 @@ import dev.brokenstudio.polarlobby.listener.PlayerConnectionListener;
 import dev.brokenstudio.polarlobby.listener.PlayerInteractListener;
 import dev.brokenstudio.polarlobby.listener.UtilListener;
 import dev.brokenstudio.polarlobby.player.PlayerUtils;
+import dev.brokenstudio.polarlobby.scoreboard.ScoreboardHandler;
 import dev.brokenstudio.polarlobby.utils.Locations;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,6 +28,7 @@ public class Lobby extends JavaPlugin {
     private Locations locations;
     private PlayerUtils playerUtils;
     private InventoryHandler inventoryHandler;
+    private ScoreboardHandler scoreboardHandler;
 
     @Override
     public void onEnable() {
@@ -53,6 +55,7 @@ public class Lobby extends JavaPlugin {
         playerUtils = new PlayerUtils();
         InventoryManager.getDefaultManager().registerOpener(new SpecialInventoryOpener());
         inventoryHandler = new InventoryHandler();
+        scoreboardHandler = new ScoreboardHandler();
         BadgesHandler.loadBadges();
         register();
     }
@@ -94,5 +97,9 @@ public class Lobby extends JavaPlugin {
 
     public InventoryHandler getInventoryHandler() {
         return inventoryHandler;
+    }
+
+    public ScoreboardHandler getScoreboardHandler() {
+        return scoreboardHandler;
     }
 }
