@@ -66,35 +66,40 @@ public class InventoryProviders {
             contents.set(2,2, new ClickableItem(new PolarItem(Material.LIME_DYE).name("§8•● §aAlle Spieler §8●•")
                     .glow(settings.getHiderState() == LobbySettings.HiderState.ALL),(event)->{
                 settings.setHiderState(LobbySettings.HiderState.ALL);
-                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                Bukkit.getOnlinePlayers().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
                 player.closeInventory();
             }));
 
             contents.set(2,3, new ClickableItem(new PolarItem(Material.PURPLE_DYE).name("§8•● §5VIP Spieler §8●•")
                     .glow(settings.getHiderState() == LobbySettings.HiderState.VIP),(event)->{
                 settings.setHiderState(LobbySettings.HiderState.VIP);
-                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                Bukkit.getOnlinePlayers().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
                 player.closeInventory();
             }));
 
             contents.set(2,5, new ClickableItem(new PolarItem(Material.ORANGE_DYE).name("§8•● §6Freunde §8●•")
                     .glow(settings.getHiderState() == LobbySettings.HiderState.FRIENDS),(event)->{
                 settings.setHiderState(LobbySettings.HiderState.FRIENDS);
-                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                Bukkit.getOnlinePlayers().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
                 player.closeInventory();
             }));
 
             contents.set(2,7, new ClickableItem(new PolarItem(Material.RED_DYE).name("§8•● §cTeam §8●•")
                     .glow(settings.getHiderState() == LobbySettings.HiderState.TEAM),(event)->{
                 settings.setHiderState(LobbySettings.HiderState.TEAM);
-                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                Bukkit.getOnlinePlayers().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
                 player.closeInventory();
             }));
 
             contents.set(2,8, new ClickableItem(new PolarItem(Material.LIGHT_GRAY_DYE).name("§8•● §7Keine Spieler §8●•")
                     .glow(settings.getHiderState() == LobbySettings.HiderState.NOONE),(event)->{
                 settings.setHiderState(LobbySettings.HiderState.NOONE);
-                settings.getHiderState().getPlayerList().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                Bukkit.getOnlinePlayers().forEach(cr -> player.showPlayer(Lobby.getInstance(), cr));
+                settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
                 player.closeInventory();
             }));
 
