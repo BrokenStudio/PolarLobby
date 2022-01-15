@@ -17,37 +17,18 @@ public class ScoreboardHandler {
         ONE(1, " §b♚ §8▎ ","§7Twitter","     §8» ","§b@ByteFoxNet"),TWO(2, " §9✎ §8▎ ","§7Discord","     §8» §9Byte","§9Fox.net/discord"),
         THREE(3, " §c✯ §8▎ ","§7TeamSpeak","     §8» ","§cts.bytefox.net"),FOUR(4, " §6✿ §8▎ ","§7Forum","     §8» ","§6ByteFox.net");
 
-        private int id;
-        private String topOne;
-        private String topTwo;
-        private String bottomOne;
-        private String bottomTwo;
+        private final int id;
+        private final String topOne;
+        private final String topTwo;
+        private final String bottomOne;
+        private final String bottomTwo;
 
         ScoreboardState(int id, String topOne, String topTwo, String bottomOne, String bottomTwo) {
+            this.id = id;
             this.topOne = topOne;
             this.topTwo = topTwo;
             this.bottomOne = bottomOne;
             this.bottomTwo = bottomTwo;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public String getTopOne() {
-            return topOne;
-        }
-
-        public String getTopTwo() {
-            return topTwo;
-        }
-
-        public String getBottomOne() {
-            return bottomOne;
-        }
-
-        public String getBottomTwo() {
-            return bottomTwo;
         }
     }
 
