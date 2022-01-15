@@ -2,9 +2,12 @@ package dev.brokenstudio.polarlobby.scoreboard;
 
 import dev.brokenstudio.cloud.cloudplayer.CloudPlayer;
 import dev.brokenstudio.cloud.scoreboard.Prefix;
+import dev.brokenstudio.polarlobby.Lobby;
 import dev.brokenstudio.polarlobby.bits.BitsHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -30,6 +33,20 @@ public class ScoreboardHandler {
             this.bottomOne = bottomOne;
             this.bottomTwo = bottomTwo;
         }
+
+        public static ScoreboardState getStateById(int id){
+            switch (id){
+                case 2:
+                    return ScoreboardState.TWO;
+                case 3:
+                    return ScoreboardState.THREE;
+                case 4:
+                    return ScoreboardState.FOUR;
+                default:
+                    return ScoreboardState.ONE;
+            }
+        }
+
     }
 
     private BukkitTask task;
@@ -39,6 +56,7 @@ public class ScoreboardHandler {
     public ScoreboardHandler(){
         currentState = ScoreboardState.ONE;
         firstPage = true;
+        runAnimation();
     }
 
     public void setSidebar(Player player, CloudPlayer cloudPlayer){
@@ -118,6 +136,49 @@ public class ScoreboardHandler {
         objective.getScore(ChatColor.GRAY + "" + ChatColor.WHITE).setScore(2);
         objective.getScore(ChatColor.DARK_PURPLE + "" + ChatColor.BLACK).setScore(1);
 
+    }
+
+    private void updateSidebar(Player player){
+        Scoreboard scoreboard = player.getScoreboard();
+        Team bitsClanOne = scoreboard.getTeam("bitsClanOne");
+        Team bitsClanTwo = scoreboard.getTeam("bitsClanTwo");
+        Team playtimeFriendOne = scoreboard.getTeam("pTFO");
+        Team playtimeFriendTwo = scoreboard.getTeam("pTFT");
+
+        if(firstPage){
+            bitsClanOne.setPrefix(" §5➓ §8▎ §7Bits");
+            bitsClanTwo.setPrefix("     §8» §7" + BitsHandler.getInstance().getBits(player.getUniqueId()));
+            playtimeFriendOne.setPrefix(" §6✈ §8▎ §7Spielzeit");
+            playtimeFriendTwo.setPrefix("     §8» §70h");
+        }else{
+            bitsClanOne.setPrefix(" §5☕ §8▎ §7Clan");
+            bitsClanTwo.setPrefix("     §8» §c✘");
+            playtimeFriendOne.setPrefix(" §6❤ §8▎ §Freunde");
+            playtimeFriendTwo.setPrefix("     §8» §d§l0/0");
+        }
+        Team linkType = scoreboard.registerNewTeam("linkType");
+        linkType.setPrefix(currentState.topOne);
+        linkType.setSuffix(currentState.topTwo);
+
+        Team link = scoreboard.registerNewTeam("link");
+        link.setPrefix(currentState.bottomOne);
+        link.setSuffix(currentState.bottomTwo);
+    }
+
+    private void runAnimation(){
+        task = new BukkitRunnable(){
+
+            @Override
+            public void run() {
+
+                ScoreboardState newState = ScoreboardState.getStateById((currentState.id+1) % 4);
+                currentState = newState;
+                firstPage = !firstPage;
+                Bukkit.getOnlinePlayers().forEach(cr -> updateSidebar(cr));
+
+
+            }
+        }.runTaskTimer(Lobby.getInstance(),100,100);
     }
 
 }
