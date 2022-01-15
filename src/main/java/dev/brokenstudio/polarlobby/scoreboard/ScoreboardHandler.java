@@ -17,7 +17,7 @@ import org.bukkit.scoreboard.Team;
 public class ScoreboardHandler {
 
     public enum ScoreboardState {
-        ONE(1, " §b♚ §8▎ ","§7Twitter","     §8» ","§b@ByteFoxNet"),TWO(2, " §9✎ §8▎ ","§7Discord","     §8» §9Byte","§9Fox.net/discord"),
+        ONE(1, " §b♚ §8▎ ","§7Twitter","     §8» ","§b@ByteFoxNet"),TWO(2, " §9✎ §8▎ ","§7Discord","     §8» §9dc.byte","§9fox.net"),
         THREE(3, " §c✯ §8▎ ","§7TeamSpeak","     §8» ","§cts.bytefox.net"),FOUR(4, " §6✿ §8▎ ","§7Forum","     §8» ","§6ByteFox.net");
 
         private final int id;
@@ -36,12 +36,12 @@ public class ScoreboardHandler {
 
         public static ScoreboardState getStateById(int id){
             switch (id){
+                case 0:
+                    return ScoreboardState.FOUR;
                 case 2:
                     return ScoreboardState.TWO;
                 case 3:
                     return ScoreboardState.THREE;
-                case 4:
-                    return ScoreboardState.FOUR;
                 default:
                     return ScoreboardState.ONE;
             }
@@ -68,7 +68,7 @@ public class ScoreboardHandler {
         objective.setDisplayName("§8•● §5Byte§dFox §8●• §7Lobby");
 
         Team line = scoreboard.registerNewTeam("line");
-        line.setPrefix("§8§m                    ");
+        line.setPrefix("§8§m                         ");
         line.addEntry(ChatColor.DARK_GRAY + "" + ChatColor.WHITE);
         line.addEntry(ChatColor.DARK_RED + "" + ChatColor.WHITE);
 
@@ -95,12 +95,12 @@ public class ScoreboardHandler {
         if(firstPage){
             bitsClanOne.setPrefix(" §5➓ §8▎ §7Bits");
             bitsClanTwo.setPrefix("     §8» §7" + BitsHandler.getInstance().getBits(player.getUniqueId()));
-            playtimeFriendOne.setPrefix(" §6✈ §8▎ §7Spielzeit");
+            playtimeFriendOne.setPrefix(" §5✈ §8▎ §7Spielzeit");
             playtimeFriendTwo.setPrefix("     §8» §70h");
         }else{
             bitsClanOne.setPrefix(" §5☕ §8▎ §7Clan");
             bitsClanTwo.setPrefix("     §8» §c✘");
-            playtimeFriendOne.setPrefix(" §6❤ §8▎ §Freunde");
+            playtimeFriendOne.setPrefix(" §5❤ §8▎ §7Freunde");
             playtimeFriendTwo.setPrefix("     §8» §d§l0/0");
         }
 
@@ -148,19 +148,20 @@ public class ScoreboardHandler {
         if(firstPage){
             bitsClanOne.setPrefix(" §5➓ §8▎ §7Bits");
             bitsClanTwo.setPrefix("     §8» §7" + BitsHandler.getInstance().getBits(player.getUniqueId()));
-            playtimeFriendOne.setPrefix(" §6✈ §8▎ §7Spielzeit");
+            playtimeFriendOne.setPrefix(" §5✈ §8▎ §7Spielzeit");
             playtimeFriendTwo.setPrefix("     §8» §70h");
         }else{
             bitsClanOne.setPrefix(" §5☕ §8▎ §7Clan");
             bitsClanTwo.setPrefix("     §8» §c✘");
-            playtimeFriendOne.setPrefix(" §6❤ §8▎ §Freunde");
+            playtimeFriendOne.setPrefix(" §5❤ §8▎ §7Freunde");
             playtimeFriendTwo.setPrefix("     §8» §d§l0/0");
         }
-        Team linkType = scoreboard.registerNewTeam("linkType");
+
+        Team linkType = scoreboard.getTeam("linkType");
         linkType.setPrefix(currentState.topOne);
         linkType.setSuffix(currentState.topTwo);
 
-        Team link = scoreboard.registerNewTeam("link");
+        Team link = scoreboard.getTeam("link");
         link.setPrefix(currentState.bottomOne);
         link.setSuffix(currentState.bottomTwo);
     }
@@ -170,8 +171,7 @@ public class ScoreboardHandler {
 
             @Override
             public void run() {
-
-                ScoreboardState newState = ScoreboardState.getStateById((currentState.id+1) % 4);
+                ScoreboardState newState = ScoreboardState.getStateById((currentState.id+1)%4);
                 currentState = newState;
                 firstPage = !firstPage;
                 Bukkit.getOnlinePlayers().forEach(cr -> updateSidebar(cr));
