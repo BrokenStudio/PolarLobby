@@ -67,6 +67,7 @@ public class PlayerConnectionListener implements Listener {
         cpPlayerSave.remove(event.getPlayer().getUniqueId());
         settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
         Bukkit.getOnlinePlayers().forEach(cr -> LobbySettings.handler().getSettings(cr).getHiderState().handlePLayer(player,cr));
+        Lobby.getInstance().getActionbarHandler().sendActionbarToOnePlayer(player);
     }
 
     @EventHandler

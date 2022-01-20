@@ -1,7 +1,9 @@
 package dev.brokenstudio.polarlobby;
 
 import dev.brokenstudio.polarinvs.InventoryManager;
+import dev.brokenstudio.polarlobby.actionbar.ActionbarHandler;
 import dev.brokenstudio.polarlobby.badges.BadgesHandler;
+import dev.brokenstudio.polarlobby.commands.ActionbarCommand;
 import dev.brokenstudio.polarlobby.commands.BuildCommand;
 import dev.brokenstudio.polarlobby.commands.SetCommand;
 import dev.brokenstudio.polarlobby.database.DatabaseHandler;
@@ -29,6 +31,7 @@ public class Lobby extends JavaPlugin {
     private PlayerUtils playerUtils;
     private InventoryHandler inventoryHandler;
     private ScoreboardHandler scoreboardHandler;
+    private ActionbarHandler actionbarHandler;
 
     @Override
     public void onEnable() {
@@ -41,16 +44,31 @@ public class Lobby extends JavaPlugin {
             ResultSet rs = connection.getResult("SELECT `value` FROM `lobby_data` WHERE `key`='locations';");
             if(rs.next())
                 locations = Locations.fromJson(rs.getString("value"));
-            else
+            else {
                 locations = new Locations();
+
+                CompletableFuture.runAsync(() ->{
+                    MariaDBConnection asyncConnection = databaseHandler.getMariaDBHandler().getConnection();
+                    asyncConnection.update("INSERT INTO `lobby_data` (`key`,`value`) VALUES ('locations','empty');")
+                            .close();
+                });
+            }
         }catch (SQLException ex){
             locations = new Locations();
         }
-        CompletableFuture.runAsync(() ->{
-           MariaDBConnection asyncConnection = databaseHandler.getMariaDBHandler().getConnection();
-           asyncConnection.update("INSERT INTO `lobby_data` (`key`,`value`) VALUES ('locations','empty');")
-                   .close();
-        });
+        try {
+            ResultSet rs = connection.getResult("SELECT `value` FROM `lobby_data` WHERE `key`='actionbar';");
+            if(rs.next()){
+                actionbarHandler = new ActionbarHandler(ActionbarHandler.ActionbarList.fromJson(rs.getString("value")));
+            }else{
+                actionbarHandler = new ActionbarHandler(new ActionbarHandler.ActionbarList());
+                MariaDBConnection asyncConnection = databaseHandler.getMariaDBHandler().getConnection();
+                asyncConnection.update("INSERT INTO `lobby_data` (`key`,`value`) VALUES ('actionbar','empty');")
+                        .close();
+            }
+        }catch (SQLException ex){
+            actionbarHandler = new ActionbarHandler(new ActionbarHandler.ActionbarList());
+        }
         connection.close();
         playerUtils = new PlayerUtils();
         InventoryManager.getDefaultManager().registerOpener(new SpecialInventoryOpener());
@@ -63,7 +81,8 @@ public class Lobby extends JavaPlugin {
     @Override
     public void onDisable() {
         MariaDBConnection connection = databaseHandler.getMariaDBHandler().getConnection();
-        connection.update("UPDATE `lobby_data` SET `value`='"+locations.toJson()+"' WHERE `key`='locations';").close();
+        connection.update("UPDATE `lobby_data` SET `value`='"+locations.toJson()+"' WHERE `key`='locations';").
+                update("UPDATE `lobby_data` SET `value`='"+actionbarHandler.getList().toJson()+"' WHERE `key`='actionbar';").close();
     }
 
     private void register(){
@@ -73,6 +92,7 @@ public class Lobby extends JavaPlugin {
 
         getCommand("set").setExecutor(new SetCommand());
         getCommand("build").setExecutor(new BuildCommand());
+        getCommand("actionbar").setExecutor(new ActionbarCommand());
     }
 
     public static Lobby getInstance() {
@@ -101,5 +121,9 @@ public class Lobby extends JavaPlugin {
 
     public ScoreboardHandler getScoreboardHandler() {
         return scoreboardHandler;
+    }
+
+    public ActionbarHandler getActionbarHandler() {
+        return actionbarHandler;
     }
 }

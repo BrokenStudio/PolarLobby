@@ -12,3 +12,5 @@ commands:
     permission: polarlobby.set
   build:
     permission: polarlobby.build
+  actionbar:
+    permission: polarlobby.actionbar
