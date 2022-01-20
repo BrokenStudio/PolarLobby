@@ -1,11 +1,14 @@
 package dev.brokenstudio.polarlobby.inventories;
 
+import dev.brokenstudio.cloud.scoreboard.Prefix;
 import dev.brokenstudio.polarinvs.ClickableItem;
 import dev.brokenstudio.polarinvs.content.InventoryContents;
 import dev.brokenstudio.polarinvs.content.InventoryProvider;
 import dev.brokenstudio.polarlobby.Lobby;
 import dev.brokenstudio.polarlobby.player.LobbySettings;
+import dev.brokenstudio.polarlobby.utils.PlayerHeadURLStorage;
 import dev.brokenstudio.polarlobby.utils.PolarItem;
+import dev.brokenstudio.polarlobby.utils.Skull;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -103,6 +106,24 @@ public class InventoryProviders {
                 player.closeInventory();
             }));
 
+
+        }
+    }
+
+    public static class ProfileProvider implements InventoryProvider {
+
+        @Override
+        public void init(Player player, InventoryContents contents) {
+            contents.fillRow(1, LobbySettings.handler().getSettings(player).getColor().glass());
+            contents.fillRow(6, LobbySettings.handler().getSettings(player).getColor().glass());
+
+            contents.set(1,5,  new PolarItem(Skull.getCustomSkull(PlayerHeadURLStorage.getInstance().getUrl(player.getUniqueId())))
+                    .name("§8•● " + Prefix.getPrefix(player).get() + player.getName() + " §8●•"));
+
+            contents.set(3,5, new ClickableItem(new PolarItem(Skull.getCustomSkull("http://textures.minecraft.net/texture/1b2869abdfc6a7b0c025ce29ff81ae11fdd3899b5e63ea8915e8ff315b59b0"))
+                    .name("§8•● §dFreunde §8●•"),(event) -> {
+
+            }));
 
         }
     }

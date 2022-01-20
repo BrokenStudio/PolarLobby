@@ -43,7 +43,7 @@ public class PlayerInteractListener implements Listener {
             if(name.equalsIgnoreCase("§8•● §dNavigator §8▎ §7Rechtsklick §8●•")){
                 Lobby.getInstance().getInventoryHandler().getNavigator().open(player);
             }else if(name.equalsIgnoreCase("§8•● §dProfil §8▎ §7Rechtsklick §8●•")){
-
+                Lobby.getInstance().getInventoryHandler().getProfile().open(player);
             }
         }else if(type == Material.TOTEM_OF_UNDYING){
             Lobby.getInstance().getInventoryHandler().getHider().open(player);
