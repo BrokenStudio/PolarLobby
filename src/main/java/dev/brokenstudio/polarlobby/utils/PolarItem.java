@@ -2,6 +2,7 @@ package dev.brokenstudio.polarlobby.utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.Banner;
 import org.bukkit.block.banner.Pattern;
@@ -12,6 +13,7 @@ import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.material.Dye;
 
 import java.util.Arrays;
 
@@ -120,6 +122,8 @@ public class PolarItem extends ItemStack {
         }
     }
 
-
+    public PolarItem addPattern(Pattern pattern){
+        return this;
+    }
 
 }

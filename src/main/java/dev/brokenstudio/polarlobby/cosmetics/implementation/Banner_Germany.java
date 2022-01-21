@@ -10,11 +10,11 @@ import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.entity.Player;
 
-public class Banner_Finland extends AbstractCosmetic {
+public class Banner_Germany extends AbstractCosmetic {
 
-    public Banner_Finland(){
-        super("Finnland","Show your flag.", CosmeticType.BANNER, new PolarItem(Material.WHITE_BANNER).addPattern(new Pattern(DyeColor.BLUE, PatternType.HALF_HORIZONTAL))
-                .addPattern(new Pattern(DyeColor.WHITE, PatternType.STRIPE_TOP)).addPattern(new Pattern(DyeColor.BLUE, PatternType.STRIPE_CENTER)), Rarity.RARE);
+    public Banner_Germany(){
+        super("Deutschland","Show your flag.", CosmeticType.BANNER, new PolarItem(Material.RED_BANNER).addPattern(new Pattern(DyeColor.BLACK, PatternType.STRIPE_TOP))
+                .addPattern(new Pattern(DyeColor.RED, PatternType.STRIPE_BOTTOM)), Rarity.RARE);
     }
 
     @Override
@@ -31,6 +31,6 @@ public class Banner_Finland extends AbstractCosmetic {
 
     @Override
     public void deselect(Player player) {
-         player.getInventory().setHelmet(null);
+        player.getInventory().setHelmet(null);
     }
 }
