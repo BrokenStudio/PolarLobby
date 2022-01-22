@@ -48,8 +48,16 @@ public class CosmeticHandler {
 
     private Loader loader;
 
+    private ArrayList<AbstractCosmetic> cosmetics;
+
     public CosmeticHandler(){
         this.loader = new Loader();
+        cosmetics = new ArrayList<>();
+        loader.loadCosmetics(cosmetics);
+    }
+
+    public AbstractCosmetic getCosmetic(String name){
+        return cosmetics.stream().filter(cr -> cr.getName().equals(name)).findFirst().orElse(null);
     }
 
 }

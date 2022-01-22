@@ -19,4 +19,7 @@ public enum Rarity {
         return color + name;
     }
 
+    public String color() {
+        return color;
+    }
 }

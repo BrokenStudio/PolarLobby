@@ -6,6 +6,7 @@ import dev.brokenstudio.polarlobby.badges.BadgesHandler;
 import dev.brokenstudio.polarlobby.commands.ActionbarCommand;
 import dev.brokenstudio.polarlobby.commands.BuildCommand;
 import dev.brokenstudio.polarlobby.commands.SetCommand;
+import dev.brokenstudio.polarlobby.cosmetics.CosmeticHandler;
 import dev.brokenstudio.polarlobby.database.DatabaseHandler;
 import dev.brokenstudio.polarlobby.database.sql.MariaDBConnection;
 import dev.brokenstudio.polarlobby.inventories.InventoryHandler;
@@ -32,6 +33,7 @@ public class Lobby extends JavaPlugin {
     private InventoryHandler inventoryHandler;
     private ScoreboardHandler scoreboardHandler;
     private ActionbarHandler actionbarHandler;
+    private CosmeticHandler cosmeticHandler;
 
     @Override
     public void onEnable() {
@@ -75,6 +77,7 @@ public class Lobby extends JavaPlugin {
         inventoryHandler = new InventoryHandler();
         scoreboardHandler = new ScoreboardHandler();
         BadgesHandler.loadBadges();
+        cosmeticHandler = new CosmeticHandler();
         register();
     }
 
@@ -125,5 +128,9 @@ public class Lobby extends JavaPlugin {
 
     public ActionbarHandler getActionbarHandler() {
         return actionbarHandler;
+    }
+
+    public CosmeticHandler getCosmeticHandler() {
+        return cosmeticHandler;
     }
 }

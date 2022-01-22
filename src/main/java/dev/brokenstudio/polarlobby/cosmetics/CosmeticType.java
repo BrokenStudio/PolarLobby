@@ -2,7 +2,7 @@ package dev.brokenstudio.polarlobby.cosmetics;
 
 public enum CosmeticType {
 
-    HAT("Hut"),BANNER("Banner");
+    HAT("Hut"),BANNER("Banner"),PARTICLES("Spur"),CLOTH("Kleidung");
 
     String name;
 

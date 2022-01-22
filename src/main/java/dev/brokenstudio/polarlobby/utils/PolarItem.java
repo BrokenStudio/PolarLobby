@@ -123,6 +123,13 @@ public class PolarItem extends ItemStack {
     }
 
     public PolarItem addPattern(Pattern pattern){
+        if(!getType().toString().contains("BANNER")){
+            throw new IllegalArgumentException("Pattern only applicable to banner!");
+        }
+
+        BannerMeta meta = (BannerMeta) getItemMeta();
+        meta.addPattern(pattern);
+        setItemMeta(meta);
         return this;
     }
 

@@ -18,7 +18,7 @@ public abstract class AbstractCosmetic {
         this.cosmeticType = cosmeticType;
         this.item = item;
         this.rarity = rarity;
-        this.item.name(this.rarity.color + this.name);
+        this.item.name("§8•● " + this.rarity.color + this.name + " §8●•");
         this.item.lore("§7Kategorie§8: §f" + this.cosmeticType.name,"§7Seltenheit§8: " + this.rarity.displayname()," ", "§7" + this.description, " ");
     }
 
