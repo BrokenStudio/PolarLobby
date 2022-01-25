@@ -19,7 +19,7 @@ public class Particle_Red extends AbstractCosmetic {
     private LinkedList<Item> spawned;
 
     public Particle_Red() {
-        super("Rote Spur", "Du magst Rot, ich auch!", CosmeticType.PARTICLES, new PolarItem(Material.RED_DYE), Rarity.RARE);
+        super("Rote Spur", "Heute rot, morgen tot!", CosmeticType.PARTICLES, new PolarItem(Material.RED_DYE), Rarity.RARE);
         spawned = new LinkedList<>();
     }
 

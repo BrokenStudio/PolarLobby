@@ -19,7 +19,7 @@ public class Particel_Builder extends AbstractCosmetic {
     private LinkedList<Item> spawned;
 
     public Particle_Builder() {
-        super("Architekten Spur", "Du baust gerne Gebäude, ich auch!", CosmeticType.PARTICLES, new PolarItem(Material.CRAFTING_TABLE), Rarity.ULTIMATE);
+        super("Der Architekt", "Such dir Materialien zusammen und fang an zu bauen", CosmeticType.PARTICLES, new PolarItem(Material.CRAFTING_TABLE), Rarity.ULTIMATE);
         spawned = new LinkedList<>();
     }
 

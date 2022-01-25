@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 public class Cloth_White extends AbstractCosmetic {
 
     public Cloth_White() {
-        super("Weiß Kleidung", "Weiß ist toll!", CosmeticType.CLOTH, new PolarItem(Material.LEATHER_CHESTPLATE).color(Color.WHITE), Rarity.RARE);
+        super("Weiß Kleidung", "Weiß wie der Schnee", CosmeticType.CLOTH, new PolarItem(Material.LEATHER_CHESTPLATE).color(Color.WHITE), Rarity.RARE);
     }
 
     @Override

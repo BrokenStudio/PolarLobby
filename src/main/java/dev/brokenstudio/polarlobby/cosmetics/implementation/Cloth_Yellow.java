@@ -10,10 +10,10 @@ import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-public class Cloth_Rainbow extends AbstractCosmetic {
+public class Cloth_Yellow extends AbstractCosmetic {
 
-    public Cloth_Rainbow() {
-        super("Regenbogen Kleidung", "Sei Bunt wie ein Regenbogen!", CosmeticType.CLOTH, new PolarItem(Material.LEATHER_CHESTPLATE).color(Color.YELLOW), Rarity.ULTIMATE);
+    public Cloth_Yellow() {
+        super("Gelbe Kleidung", "Du strahlst wie die Sonne!", CosmeticType.CLOTH, new PolarItem(Material.LEATHER_CHESTPLATE).color(Color.YELLOW), Rarity.RARE);
     }
 
     @Override
@@ -22,8 +22,8 @@ public class Cloth_Rainbow extends AbstractCosmetic {
         iBytePlayer.getCloth().deselect(player);
         iBytePlayer.setCloth(this);
         player.getInventory().setChestplate(new PolarItem(Material.LEATHER_CHESTPLATE).color(Color.YELLOW).name("§8•● " + getRarity().color() + getName() + " §8●•"));
-        player.getInventory().setLeggings(new PolarItem(Material.LEATHER_LEGGINGS).color(Color.BLUE).name("§8•● " + getRarity().color() + getName() + " §8●•"));
-        player.getInventory().setBoots(new PolarItem(Material.LEATHER_BOOTS).color(Color.RED).name("§8•● " + getRarity().color() + getName() + " §8●•"));
+        player.getInventory().setLeggings(new PolarItem(Material.LEATHER_LEGGINGS).color(Color.YELLOW).name("§8•● " + getRarity().color() + getName() + " §8●•"));
+        player.getInventory().setBoots(new PolarItem(Material.LEATHER_BOOTS).color(Color.YELLOW).name("§8•● " + getRarity().color() + getName() + " §8●•"));
     }
 
     @Override

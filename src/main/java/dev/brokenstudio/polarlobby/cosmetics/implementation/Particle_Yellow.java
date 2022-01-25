@@ -14,12 +14,12 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.LinkedList;
 
-public class Particle_Rainbow extends AbstractCosmetic {
+public class Particle_Yellow extends AbstractCosmetic {
 
     private LinkedList<Item> spawned;
 
-    public Particle_Rainbow() {
-        super("Regenbogen Spur", "Du magst Regenbögen, ich auch!", CosmeticType.PARTICLES, new PolarItem(Material.YELLOW_DYE), Rarity.ULTIMATE);
+    public Particle_Yellow() {
+        super("Gelbe Spur", "Du strahlst wie die Sonne!", CosmeticType.PARTICLES, new PolarItem(Material.YELLOW_DYE), Rarity.RARE);
         spawned = new LinkedList<>();
     }
 
@@ -31,9 +31,9 @@ public class Particle_Rainbow extends AbstractCosmetic {
     @Override
     public void use(Player player) {
         Location location = player.getLocation().subtract(0,0.2,0);
-        Item one = location.getWorld().dropItem(location,new ItemStack(Material.BLUE_DYE));
-        Item two = location.getWorld().dropItem(location,new ItemStack(Material.RED_STAINED_GLASS));
-        Item three = location.getWorld().dropItem(location,new ItemStack(Material.BLUE_WOOL));
+        Item one = location.getWorld().dropItem(location,new ItemStack(Material.YELLOW_DYE));
+        Item two = location.getWorld().dropItem(location,new ItemStack(Material.YELLOW_STAINED_GLASS));
+        Item three = location.getWorld().dropItem(location,new ItemStack(Material.YELLOW_WOOL));
         Item four = location.getWorld().dropItem(location,new ItemStack(Material.YELLOW_CONCRETE));
 
         spawned.add(one);

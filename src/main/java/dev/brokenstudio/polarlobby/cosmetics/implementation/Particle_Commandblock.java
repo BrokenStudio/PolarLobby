@@ -19,7 +19,7 @@ public class Particle_Commandblock extends AbstractCosmetic {
     private LinkedList<Item> spawned;
 
     public Particle_Commandblock() {
-        super("Commandblock Spur", "Du magst Commandblöcke, ich auch!", CosmeticType.PARTICLES, new PolarItem(Material.COMMAND_BLOCK), Rarity.ULTIMATE);
+        super("Der Programmierer", "System.out.println(\"Hello World!\");", CosmeticType.PARTICLES, new PolarItem(Material.COMMAND_BLOCK), Rarity.ULTIMATE);
         spawned = new LinkedList<>();
     }
 

@@ -19,7 +19,7 @@ public class Particel_White extends AbstractCosmetic {
     private LinkedList<Item> spawned;
 
     public Particel_White() {
-        super("Weiße Spur", "Du magst Weiß, ich auch!", CosmeticType.PARTICLES, new PolarItem(Material.WHITE_DYE), Rarity.RARE);
+        super("Weiße Spur", "Weiß wie der Schnee", CosmeticType.PARTICLES, new PolarItem(Material.WHITE_DYE), Rarity.RARE);
         spawned = new LinkedList<>();
     }
 

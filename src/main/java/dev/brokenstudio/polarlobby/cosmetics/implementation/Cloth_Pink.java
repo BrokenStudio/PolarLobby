@@ -10,10 +10,10 @@ import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-public class Cloth_Red extends AbstractCosmetic {
+public class Cloth_Pink extends AbstractCosmetic {
 
-    public Cloth_Red() {
-        super("Rote Kleidung", "Heute rot, morgen tot", CosmeticType.CLOTH, new PolarItem(Material.LEATHER_CHESTPLATE).color(Color.RED), Rarity.RARE);
+    public Cloth_Pink() {
+        super("Rosa Kleidung", "Alles durch die rosarote Brille sehen", CosmeticType.CLOTH, new PolarItem(Material.LEATHER_CHESTPLATE).color(Color.GREEN), Rarity.RARE);
     }
 
     @Override
@@ -21,9 +21,9 @@ public class Cloth_Red extends AbstractCosmetic {
         IBytePlayer iBytePlayer = IBytePlayer.handler().getIBytePlayer(player.getUniqueId());
         iBytePlayer.getCloth().deselect(player);
         iBytePlayer.setCloth(this);
-        player.getInventory().setChestplate(new PolarItem(Material.LEATHER_CHESTPLATE).color(Color.RED).name("§8•● " + getRarity().color() + getName() + " §8●•"));
-        player.getInventory().setLeggings(new PolarItem(Material.LEATHER_LEGGINGS).color(Color.RED).name("§8•● " + getRarity().color() + getName() + " §8●•"));
-        player.getInventory().setBoots(new PolarItem(Material.LEATHER_BOOTS).color(Color.RED).name("§8•● " + getRarity().color() + getName() + " §8●•"));
+        player.getInventory().setChestplate(new PolarItem(Material.LEATHER_CHESTPLATE).color(Color.FUCHSIA).name("§8•● " + getRarity().color() + getName() + " §8●•"));
+        player.getInventory().setLeggings(new PolarItem(Material.LEATHER_LEGGINGS).color(Color.FUCHSIA).name("§8•● " + getRarity().color() + getName() + " §8●•"));
+        player.getInventory().setBoots(new PolarItem(Material.LEATHER_BOOTS).color(Color.FUCHSIA).name("§8•● " + getRarity().color() + getName() + " §8●•"));
     }
 
     @Override

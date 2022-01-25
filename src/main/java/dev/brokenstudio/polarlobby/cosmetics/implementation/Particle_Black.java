@@ -19,7 +19,7 @@ public class Particle_Black extends AbstractCosmetic {
     private LinkedList<Item> spawned;
 
     public Particle_Black() {
-        super("Schwarze Spur", "Du magst Schwarz, ich auch!", CosmeticType.PARTICLES, new PolarItem(Material.BLACK_DYE), Rarity.EPIC);
+        super("Schwarze Spur", "Schwarz wie die Nacht", CosmeticType.PARTICLES, new PolarItem(Material.BLACK_DYE), Rarity.EPIC);
         spawned = new LinkedList<>();
     }
 

@@ -19,7 +19,7 @@ public class Particle_Green extends AbstractCosmetic {
     private LinkedList<Item> spawned;
 
     public Particle_Green() {
-        super("Grüne Spur", "Du magst Grün, ich auch!", CosmeticType.PARTICLES, new PolarItem(Material.GREEN_DYE), Rarity.RARE);
+        super("Grüne Spur", "Alles im grünen Bereich!", CosmeticType.PARTICLES, new PolarItem(Material.GREEN_DYE), Rarity.RARE);
         spawned = new LinkedList<>();
     }
 

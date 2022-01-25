@@ -19,7 +19,7 @@ public class Particel_Blue extends AbstractCosmetic {
     private LinkedList<Item> spawned;
 
     public Particle_Blue() {
-        super("Blaue Spur", "Du magst Blau, ich auch!", CosmeticType.PARTICLES, new PolarItem(Material.BLUE_DYE), Rarity.EPIC);
+        super("Blaue Spur", "Ein blaues Wunder erleben", CosmeticType.PARTICLES, new PolarItem(Material.BLUE_DYE), Rarity.EPIC);
         spawned = new LinkedList<>();
     }
 
