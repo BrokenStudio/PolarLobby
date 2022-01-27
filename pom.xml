@@ -16,7 +16,7 @@
     <repositories>
         <repository>
             <id>polar-repo</id>
-            <url>https://seoul.brokenstudio.de</url>
+            <url>http://seoul.brokenstudio.de</url>
         </repository>
         <repository>
             <id>spigot-repo</id>
@@ -60,7 +60,7 @@
         <dependency>
             <groupId>dev.brokenstudio.lib</groupId>
             <artifactId>PolarInvs-Lib</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1c</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -69,6 +69,7 @@
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+
     </dependencies>
 
 </project>

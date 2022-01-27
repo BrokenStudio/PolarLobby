@@ -6,6 +6,8 @@ import dev.brokenstudio.polarlobby.Lobby;
 import dev.brokenstudio.polarlobby.badges.BadgesHandler;
 import dev.brokenstudio.polarlobby.bits.BitsHandler;
 import dev.brokenstudio.polarlobby.database.building.BuildHandler;
+import dev.brokenstudio.polarlobby.glow.GlowAPI;
+import dev.brokenstudio.polarlobby.inventories.InventoryProviders;
 import dev.brokenstudio.polarlobby.inventories.LobbyColor;
 import dev.brokenstudio.polarlobby.player.LobbySettings;
 import dev.brokenstudio.polarlobby.utils.JsonLocation;
@@ -64,9 +66,17 @@ public class PlayerConnectionListener implements Listener {
         BitsHandler.getInstance().loadPlayer(cloudPlayer);
         BadgesHandler.getInstance().loadPlayer(cloudPlayer);
         Lobby.getInstance().getScoreboardHandler().setSidebar(player, cloudPlayer);
+        if(InventoryProviders.Settings.getBooleanFromCloudPlayer(cloudPlayer,"lobby_glow",false)){
+            GlowAPI.changeGlow(player);
+        }
         cpPlayerSave.remove(event.getPlayer().getUniqueId());
         settings.getHiderState().getPlayerList().forEach(cr -> player.hidePlayer(Lobby.getInstance(), cr));
-        Bukkit.getOnlinePlayers().forEach(cr -> LobbySettings.handler().getSettings(cr).getHiderState().handlePLayer(player,cr));
+        Bukkit.getOnlinePlayers().forEach(cr -> {
+            LobbySettings.handler().getSettings(cr).getHiderState().handlePLayer(player,cr);
+            if(GlowAPI.isGlowing(cr)){
+                GlowAPI.sendGlowing(cr,player,true);
+            }
+        });
         Lobby.getInstance().getActionbarHandler().sendActionbarToOnePlayer(player);
     }
 
@@ -81,6 +91,7 @@ public class PlayerConnectionListener implements Listener {
         cloudPlayer.setProperty("lobby_settings", LobbySettings.handler().getSettings(player));
         BitsHandler.getInstance().savePlayer(cloudPlayer);
         BadgesHandler.getInstance().unloadPlayer(player,cloudPlayer);
+        cloudPlayer.setProperty("lobby_glow", GlowAPI.isGlowing(player));
         CloudPlugin.getInstance().getCloudPlayerHandler().setCloudPlayer(cloudPlayer);
         BadgesHandler.getInstance().removePlayer(player);
     }

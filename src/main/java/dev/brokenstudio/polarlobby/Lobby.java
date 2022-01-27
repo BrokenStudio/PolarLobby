@@ -8,6 +8,7 @@ import dev.brokenstudio.polarlobby.commands.BuildCommand;
 import dev.brokenstudio.polarlobby.commands.SetCommand;
 import dev.brokenstudio.polarlobby.database.DatabaseHandler;
 import dev.brokenstudio.polarlobby.database.sql.MariaDBConnection;
+import dev.brokenstudio.polarlobby.glow.GlowAPI;
 import dev.brokenstudio.polarlobby.inventories.InventoryHandler;
 import dev.brokenstudio.polarlobby.inventories.opener.SpecialInventoryOpener;
 import dev.brokenstudio.polarlobby.listener.PlayerConnectionListener;
